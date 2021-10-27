@@ -6,13 +6,13 @@
 /*   By: tidigov <tidigov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 14:54:03 by tidigov           #+#    #+#             */
-/*   Updated: 2021/10/25 15:30:08 by tidigov          ###   ########.fr       */
+/*   Updated: 2021/10/26 16:50:04 by tidigov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy (void *restrict dst, const void *restrict src, size_t n)
+void	*ft_memcpy(void *restrict dst, const void *restrict src, size_t n)
 {
 	unsigned char	*dst1;
 	unsigned char	*src1;

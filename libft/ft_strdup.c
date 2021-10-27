@@ -1,40 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tidigov <tidigov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/25 15:54:38 by tidigov           #+#    #+#             */
-/*   Updated: 2021/10/26 16:50:15 by tidigov          ###   ########.fr       */
+/*   Created: 2021/10/26 19:19:40 by tidigov           #+#    #+#             */
+/*   Updated: 2021/10/26 19:25:13 by tidigov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
+char	*ft_strdup(const char *s1)
 {
-	unsigned char	*dst1;
-	unsigned char	*src1;
-	size_t			i;
+	char	*copy;
+	size_t	i;
 
 	i = 0;
-	src1 = (unsigned char *)src;
-	dst1 = (unsigned char *)dst;
-	if (!dst && !src)
+	while (s1[i])
+		i++;
+	copy = malloc(sizeof(char) * i + 1);
+	if (!copy)
 		return (NULL);
-	if (dst1 > src1)
+	i = 0;
+	while (s1[i])
 	{
-		while (i < len)
-		{
-			dst1[len - 1] = src1[len - 1];
-			len--;
-		}
-	}
-	while (i < len)
-	{
-		dst1[i] = src1[i];
+		copy[i] = s1[i];
 		i++;
 	}
-	return (dst);
+	copy[i] = '\0';
+	return (copy);
 }

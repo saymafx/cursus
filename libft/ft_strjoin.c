@@ -1,40 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tidigov <tidigov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/25 15:54:38 by tidigov           #+#    #+#             */
-/*   Updated: 2021/10/26 16:50:15 by tidigov          ###   ########.fr       */
+/*   Created: 2021/10/27 16:17:55 by tidigov           #+#    #+#             */
+/*   Updated: 2021/10/27 16:26:59 by tidigov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	unsigned char	*dst1;
-	unsigned char	*src1;
-	size_t			i;
+	char	*copy;
+	size_t	a;
+	size_t	b;
+	size_t	c;
 
-	i = 0;
-	src1 = (unsigned char *)src;
-	dst1 = (unsigned char *)dst;
-	if (!dst && !src)
+	if (!s1 && !s2)
 		return (NULL);
-	if (dst1 > src1)
+	a = ft_strlen(s1);
+	b = ft_strlen(s2);
+	c = a + b;
+	copy = malloc(sizeof(char) * c);
+	if (!copy)
+		return (NULL);
+	a = -1;
+	b = 0;
+	while (s1[++a] != '\0')
+		copy = s1[a];
+	while (s2[b] != '\0')
 	{
-		while (i < len)
-		{
-			dst1[len - 1] = src1[len - 1];
-			len--;
-		}
+		copy[a] = s2[b];
+		b++;
+		a++;
 	}
-	while (i < len)
-	{
-		dst1[i] = src1[i];
-		i++;
-	}
-	return (dst);
+	copy[a] = '\0';
+	return (copy);
 }
