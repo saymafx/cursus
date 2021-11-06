@@ -6,13 +6,13 @@
 /*   By: tidigov <tidigov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 16:27:57 by tidigov           #+#    #+#             */
-/*   Updated: 2021/10/26 16:51:31 by tidigov          ###   ########.fr       */
+/*   Updated: 2021/10/28 16:15:50 by tidigov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcpy(char *restrict dst, const char *restrict src, size_t dstsize)
+size_t	ft_strlcat(char *restrict dst, const char *restrict src, size_t dstsize)
 {
 	size_t	i;
 	size_t	src1;

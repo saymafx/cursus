@@ -1,42 +1,60 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tidigov <tidigov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/27 16:17:55 by tidigov           #+#    #+#             */
-/*   Updated: 2021/10/28 16:20:03 by tidigov          ###   ########.fr       */
+/*   Created: 2021/10/31 16:58:21 by tidigov           #+#    #+#             */
+/*   Updated: 2021/11/02 18:27:30 by tidigov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+int	countnbr(int n)
 {
-	char	*copy;
-	size_t	a;
-	size_t	b;
-	size_t	c;
+	int	c;
 
-	if (!s1 || !s2)
-		return (NULL);
-	a = ft_strlen(s1);
-	b = ft_strlen(s2);
-	c = a + b;
-	copy = malloc(sizeof(char) * c);
-	if (!copy)
-		return (NULL);
-	a = -1;
-	b = 0;
-	while (s1[++a] != '\0')
-		copy[a] = s1[a];
-	while (s2[b] != '\0')
+	c = 0;
+	if (n < 0)
 	{
-		copy[a] = s2[b];
-		b++;
-		a++;
+		c++;
 	}
-	copy[a] = '\0';
-	return (copy);
+	if (!n)
+		return (1);
+	while (n)
+	{
+		c++;
+		n /= 10;
+	}
+	return (c);
+}
+
+char	*ft_itoa(int n)
+{
+	char		*result;
+	int			a;
+	long int	b;
+
+	a = countnbr(n);
+	result = malloc(a * sizeof(char) + 1);
+	if (!result)
+		return (NULL);
+	b = n;
+	if (b < 0)
+	{
+		b *= -1;
+		result[0] = '-';
+	}
+	result[a--] = '\0';
+	if (n == 0)
+		result[a] = '0';
+	while (b)
+	{
+		result[a] = '0' + b % 10;
+		b /= 10;
+		a--;
+	}
+	return (result);
 }

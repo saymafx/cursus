@@ -1,42 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tidigov <tidigov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/27 16:17:55 by tidigov           #+#    #+#             */
-/*   Updated: 2021/10/28 16:20:03 by tidigov          ###   ########.fr       */
+/*   Created: 2021/10/28 16:54:02 by tidigov           #+#    #+#             */
+/*   Updated: 2021/11/02 16:41:17 by tidigov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+void	ft_putnbr_fd(int n, int fd)
 {
-	char	*copy;
-	size_t	a;
-	size_t	b;
-	size_t	c;
+	long long int	nbr;
+	long long int	a;
+	long long int	b;
 
-	if (!s1 || !s2)
-		return (NULL);
-	a = ft_strlen(s1);
-	b = ft_strlen(s2);
-	c = a + b;
-	copy = malloc(sizeof(char) * c);
-	if (!copy)
-		return (NULL);
-	a = -1;
-	b = 0;
-	while (s1[++a] != '\0')
-		copy[a] = s1[a];
-	while (s2[b] != '\0')
+	nbr = n;
+	a = 0;
+	b = 9;
+	if (nbr < a)
 	{
-		copy[a] = s2[b];
-		b++;
-		a++;
+		ft_putchar_fd('-', fd);
+		nbr = -nbr;
 	}
-	copy[a] = '\0';
-	return (copy);
+	if (nbr > b)
+	{
+		ft_putnbr_fd(nbr / 10, fd);
+		ft_putchar_fd(nbr % 10 + '0', fd);
+	}
+	else
+	{
+		nbr = nbr + '0';
+		ft_putchar_fd(nbr, fd);
+	}
 }

@@ -1,42 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tidigov <tidigov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/27 16:17:55 by tidigov           #+#    #+#             */
-/*   Updated: 2021/10/28 16:20:03 by tidigov          ###   ########.fr       */
+/*   Created: 2021/10/28 18:41:32 by tidigov           #+#    #+#             */
+/*   Updated: 2021/11/02 16:41:01 by tidigov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	char	*copy;
 	size_t	a;
-	size_t	b;
-	size_t	c;
+	char	*str;
 
-	if (!s1 || !s2)
+	if (!s)
 		return (NULL);
-	a = ft_strlen(s1);
-	b = ft_strlen(s2);
-	c = a + b;
-	copy = malloc(sizeof(char) * c);
-	if (!copy)
+	str = ft_strdup(s);
+	if (!str)
 		return (NULL);
-	a = -1;
-	b = 0;
-	while (s1[++a] != '\0')
-		copy[a] = s1[a];
-	while (s2[b] != '\0')
+	a = 0;
+	while (str[a] != '\0')
 	{
-		copy[a] = s2[b];
-		b++;
+		str[a] = f(a, s[a]);
 		a++;
 	}
-	copy[a] = '\0';
-	return (copy);
+	str[a] = '\0';
+	return (str);
 }
