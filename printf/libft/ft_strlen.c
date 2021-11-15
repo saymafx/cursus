@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tidigov <tidigov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/15 16:03:33 by tidigov           #+#    #+#             */
-/*   Updated: 2021/11/15 17:26:36 by tidigov          ###   ########.fr       */
+/*   Created: 2021/11/15 17:31:05 by tidigov           #+#    #+#             */
+/*   Updated: 2021/11/15 17:31:29 by tidigov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_is_arg()
+size_t	ft_strlen(const char *s)
 {
-	
-}
+	int	i;
 
-int	ft_printf(const char *s, ...)
-{
-	va_list	ap;
-
-	
+	i = 0;
+	while (s[i] != '\0')
+		i++;
+	return (i);
 }

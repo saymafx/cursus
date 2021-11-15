@@ -1,25 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tidigov <tidigov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/15 16:03:33 by tidigov           #+#    #+#             */
-/*   Updated: 2021/11/15 17:26:36 by tidigov          ###   ########.fr       */
+/*   Created: 2021/11/15 17:31:56 by tidigov           #+#    #+#             */
+/*   Updated: 2021/11/15 17:31:58 by tidigov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <limits.h>
 
-int	ft_is_arg()
+int main()
 {
-	
-}
-
-int	ft_printf(const char *s, ...)
-{
-	va_list	ap;
-
-	
+	printf("trc :%d \n",printf(" NULL %s NULL ", NULL));
+	printf("ftc :%d \n",ft_printf(" NULL %s NULL ", NULL));
 }
