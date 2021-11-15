@@ -6,13 +6,13 @@
 /*   By: tidigov <tidigov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/31 16:58:21 by tidigov           #+#    #+#             */
-/*   Updated: 2021/11/02 18:27:30 by tidigov          ###   ########.fr       */
+/*   Updated: 2021/11/09 17:34:26 by tidigov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	countnbr(int n)
+static int	countnbr(int n)
 {
 	int	c;
 
@@ -31,7 +31,7 @@ int	countnbr(int n)
 	return (c);
 }
 
-char	*ft_itoa(int n)
+static char	*ft_itoa(int n)
 {
 	char		*result;
 	int			a;

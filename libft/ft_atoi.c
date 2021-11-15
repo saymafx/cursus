@@ -6,7 +6,7 @@
 /*   By: tidigov <tidigov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 17:09:08 by tidigov           #+#    #+#             */
-/*   Updated: 2021/10/25 14:26:30 by tidigov          ###   ########.fr       */
+/*   Updated: 2021/11/08 13:55:53 by tidigov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ft_atoi(const char *str)
 	result = 0;
 	while ((*str == ' ') || (*str >= 9 && *str <= 13))
 		str++;
-	while (*str == '+' || *str == '-')
+	if (*str == '+' || *str == '-')
 	{
 		if (*str == '-')
 			signe = !signe;

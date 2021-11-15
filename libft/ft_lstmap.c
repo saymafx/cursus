@@ -6,17 +6,17 @@
 /*   By: tidigov <tidigov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 17:40:03 by tidigov           #+#    #+#             */
-/*   Updated: 2021/11/04 18:02:57 by tidigov          ###   ########.fr       */
+/*   Updated: 2021/11/06 16:42:01 by tidigov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstmap(t_list *lst, void *(*f)(void *),void (*del)(void *))
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
 	t_list	*courant;
 	t_list	*courant1;
-	
+
 	if (!lst || !del)
 		return (NULL);
 	courant = NULL;
