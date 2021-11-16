@@ -6,7 +6,7 @@
 /*   By: tidigov <tidigov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 17:27:19 by tidigov           #+#    #+#             */
-/*   Updated: 2021/11/15 17:27:31 by tidigov          ###   ########.fr       */
+/*   Updated: 2021/11/16 17:31:14 by tidigov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_putchar(char c)
 	write(1, &c, 1);
 }
 
-void	ft_putnbr(int nb)
+int	ft_putnbr(int nb)
 {
 	int	n;
 

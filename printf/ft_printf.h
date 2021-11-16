@@ -6,7 +6,7 @@
 /*   By: tidigov <tidigov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 16:07:29 by tidigov           #+#    #+#             */
-/*   Updated: 2021/11/15 17:36:49 by tidigov          ###   ########.fr       */
+/*   Updated: 2021/11/16 17:34:39 by tidigov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	ft_printf(const char *s, ...);
 //libft
 char	*ft_strchr(const char *s, int c);
 size_t	ft_strlen(const char *s);
-void	ft_putnbr(int nb);
-int	ft_putchar(char c)
+int	ft_putnbr(int nb);
+int	ft_putchar(char c);
 
 #endif
