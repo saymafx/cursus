@@ -8,7 +8,7 @@ AR = ar
 
 RC = -rcs
 
-SRC = ft_printf.c ft_putnbr.c ft_strchr.c ft_strlen.c test.c
+SRC = ft_printf.c ft_putnbr.c ft_strchr.c ft_strlen.c ft_putunbr.c ft_putunbr_base.c ft_putstr.c ft_putptr.c ft_isspace.c ft_putchar.c ft_test.c
 
 OBJ = ${SRC:.c=.o}
 

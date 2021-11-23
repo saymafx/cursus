@@ -6,7 +6,7 @@
 /*   By: tidigov <tidigov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 16:03:33 by tidigov           #+#    #+#             */
-/*   Updated: 2021/11/16 17:35:38 by tidigov          ###   ########.fr       */
+/*   Updated: 2021/11/23 17:12:47 by tidigov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	ft_is_arg(const char flag)
 	return (ft_strchr("cspdiuxX%", flag) != '\0');
 }
 
-static int ft_arg(const char s, va_list ap, int len)
+static int	ft_arg(const char s, va_list ap, int len)
 {
 	if (s == '%')
 		len += ft_putchar(s);
@@ -43,8 +43,8 @@ static int ft_arg(const char s, va_list ap, int len)
 static int	ft_argnbr(const char *s, va_list ap)
 {
 	int	len;
-	
-	len = 0
+
+	len = 0;
 	while (*s)
 	{
 		if (*s == '%' && ft_is_arg(*(s + 1)))
@@ -65,7 +65,7 @@ static int	ft_argnbr(const char *s, va_list ap)
 int	ft_printf(const char *s, ...)
 {
 	va_list	ap;
-	int	len;
+	int		len;
 
 	va_start(ap, s);
 	len = ft_argnbr(s, ap);

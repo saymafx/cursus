@@ -6,7 +6,7 @@
 /*   By: tidigov <tidigov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 16:07:29 by tidigov           #+#    #+#             */
-/*   Updated: 2021/11/16 17:34:39 by tidigov          ###   ########.fr       */
+/*   Updated: 2021/11/23 17:07:25 by tidigov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,18 @@
 # include <errno.h>
 # include <stdarg.h>
 
-int	ft_printf(const char *s, ...);
+int		ft_printf(const char *s, ...);
 
 //libft
+
 char	*ft_strchr(const char *s, int c);
 size_t	ft_strlen(const char *s);
-int	ft_putnbr(int nb);
-int	ft_putchar(char c);
+int		ft_putunbr_base(unsigned long nbr, char *base);
+int		ft_putptr(void *ptr);
+int		ft_putunbr(int nb);
+int		ft_putstr(char *s);
+int		ft_putchar(char c);
+int		ft_putnbr(int nb);
+int		ft_isspace(int c);
 
 #endif
