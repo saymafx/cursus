@@ -6,7 +6,7 @@
 /*   By: tidigov <tidigov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 14:39:07 by tidigov           #+#    #+#             */
-/*   Updated: 2021/11/23 16:45:36 by tidigov          ###   ########.fr       */
+/*   Updated: 2021/11/25 15:26:31 by tidigov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	ft_base_len(char *base)
 	int	b;
 
 	a = 0;
-	while (*base)
+	while (base[a])
 	{
 		if (base[a] == '+' || base[a] == '-')
 			return (0);

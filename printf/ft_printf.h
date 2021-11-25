@@ -6,7 +6,7 @@
 /*   By: tidigov <tidigov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 16:07:29 by tidigov           #+#    #+#             */
-/*   Updated: 2021/11/23 17:07:25 by tidigov          ###   ########.fr       */
+/*   Updated: 2021/11/25 14:47:02 by tidigov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ int		ft_printf(const char *s, ...);
 char	*ft_strchr(const char *s, int c);
 size_t	ft_strlen(const char *s);
 int		ft_putunbr_base(unsigned long nbr, char *base);
+int		ft_putunbr(unsigned int nb);
 int		ft_putptr(void *ptr);
-int		ft_putunbr(int nb);
 int		ft_putstr(char *s);
 int		ft_putchar(char c);
 int		ft_putnbr(int nb);

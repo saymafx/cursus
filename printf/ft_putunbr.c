@@ -6,35 +6,44 @@
 /*   By: tidigov <tidigov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 15:40:41 by tidigov           #+#    #+#             */
-/*   Updated: 2021/11/23 16:51:59 by tidigov          ###   ########.fr       */
+/*   Updated: 2021/11/23 17:43:01 by tidigov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putchar(char c)
+int	ft_lenunbr(unsigned int nb)
 {
-	write(1, &c, 1);
+	int	i;
+	
+	i = 0;
+	if (nb == 0)
+		return (1);
+	if (nb < 0)
+		i++;
+	while (nb)
+	{
+		i++;
+		nb /= 10;
+	}
+	return (i);
 }
 
-int	ft_putunbr(int nb)
+int	ft_putunbr(unsigned int nb)
 {
-	unsigned int	n;
+	int	a;
 
-	n = nb;
-	if (n == -2147483648)
-	{	
-		write(1, "-2147483648", 11);
-		return ;
-	}
-	if (n < 0)
+	a = ft_lenunbr(nb);
+	if (nb == 0)
 	{
-		ft_putchar('-');
-		n = -nb;
+		ft_putchar('0');
+		return (1);
 	}
-	if (n >= 10)
+	if (nb >= 10)
 	{
-		ft_putnbr(n / 10);
+		ft_putunbr(nb / 10);
+		nb %= 10;
 	}
-	ft_putchar((n % 10) + '0');
+	ft_putchar(nb + '0');
+	return (a);
 }

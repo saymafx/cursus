@@ -6,7 +6,7 @@
 /*   By: tidigov <tidigov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 16:03:33 by tidigov           #+#    #+#             */
-/*   Updated: 2021/11/23 17:12:47 by tidigov          ###   ########.fr       */
+/*   Updated: 2021/11/25 14:46:53 by tidigov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,11 @@ static int	ft_arg(const char s, va_list ap, int len)
 	if (s == 'i')
 		len += ft_putnbr(va_arg(ap, int));
 	if (s == 'u')
-		len += ft_putnbr(va_arg(ap, unsigned int));
+		len += ft_putunbr(va_arg(ap, unsigned int));
 	if (s == 'x')
-		len += ft_nbrbase(va_arg(ap, unsigned int), "0123456789abcdef");
+		len += ft_putunbr_base(va_arg(ap, unsigned int), "0123456789abcdef");
 	if (s == 'X')
-		len += ft_nbrbase(va_arg(ap, unsigned int), "0123456789ABCDEF");
+		len += ft_putunbr_base(va_arg(ap, unsigned int), "0123456789ABCDEF");
 	return (len);
 }
 
