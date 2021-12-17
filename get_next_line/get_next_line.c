@@ -6,52 +6,114 @@
 /*   By: tidigov <tidigov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 13:56:12 by tidigov           #+#    #+#             */
-/*   Updated: 2021/12/03 16:54:51 by tidigov          ###   ########.fr       */
+/*   Updated: 2021/12/17 15:57:28 by tidigov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_first_line(int fd, char *result)
+char	*ft_first_line(int fd, char *save_line)
 {
-	int     bytelu;
-    char    buf[BUFFER_SIZE + 1];
-    result = ft_strdup("");
+	int		bytelu;
+	char	*buf;
 
-	bytelu = read(fd, buf, BUFFER_SIZE);
-    while (bytelu > 0)
-    {
-        buf[bytelu] = '\0';
-        result = ft_strjoin(result, buf);
-        bytelu = read(fd, buf, BUFFER_SIZE);
-    }
-    return (result);
+	buf = (char *)malloc(BUFFER_SIZE + 1);
+	if (!buf)
+		return (NULL);
+	bytelu = 1;
+	while (!ft_strchr(save_line, '\n') && bytelu != 0)
+	{
+		bytelu = read(fd, buf, BUFFER_SIZE);
+		if (bytelu <= -1)
+		{
+			free(buf);
+			return (NULL);
+		}
+		buf[bytelu] = '\0';
+		save_line = ft_strjoin(save_line, buf);
+	}
+	free(buf);
+	return (save_line);
 }
 
-char	*ft_cleanline(char *cleanresult)
+char	*ft_cleanline(char *s)
 {
-	int     a;
-	char	*first_line;
-    cleanresult = ft_strdup("");
+	int		a;
+	char	*line;
 
-    a = 0;
-	first_line = *ft_first_line(*result);
-    if (!first_line)
-        return (NULL);
-    while (first_line[a++] != '\n')
-		cleanresult = ft_strjoin(cleanresult, first_line);
-	return (cleanresult);
+	a = 0;
+	if (s[0] == '\0')
+		return (NULL);
+	while (s[a] != '\n' && s[a])
+		a++;
+	line = (char *)malloc(sizeof(char) * (a + 2));
+	if (!line)
+		return (NULL);
+	a = 0;
+	while (!s[a] && s[a] != '\n')
+	{
+		line[a] = s[a];
+		a++;
+	}
+	if (s[a] == '\n')
+	{
+		line[a] = s[a];
+		a++;
+	}
+	line[a] = '\0';
+	return (line);
 }
 
-//char	*get_next_line(int fd)
-
-int main(int argc, char **argv)
+char	*ft_saveline(char *s)
 {
-    int	fd;
-    
-    (void) argc;
-    fd = open(argv[1], O_RDONLY);
-    printf("%s", *ft_cleanline(fd));
-    close(fd);
-    return(0);
+	int 	a;
+	int 	i;
+	char	*line;
+
+	a = 0;
+	i = 0;
+	while (s[a] && s[a] != '\n')
+		a++;
+	if (!s[a])
+	{
+		free(s);
+		return (NULL);
+	}
+	line = (char *)malloc(ft_strlen(s) - a + 1);
+	if (!line)
+		return (NULL);
+	a++;
+	i = 0;
+	while (s[a])
+		line[i++] = s[a++];
+	line[i] = '\0';
+	free(s);
+	return (line);
 }
+
+char	*get_next_line(int fd)
+{
+	static char	*save_line;
+	char		*line;
+
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (0);
+	save_line = ft_first_line(fd, save_line);
+	if (!save_line)
+		return (NULL);
+	line = ft_cleanline(save_line);
+	save_line = ft_saveline(save_line);
+	return (line);
+}
+
+// int	main(int argc, char **argv)
+// {
+// 	int		fd;
+// 	char	*save_line;
+
+// 	(void) argc;
+// 	fd = open(argv[1], O_RDONLY);
+// 	printf("%c", *get_next_line(fd));
+// 	close(fd);
+// 	return (0);
+// }
