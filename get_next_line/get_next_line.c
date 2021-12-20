@@ -50,7 +50,7 @@ char	*ft_cleanline(char *s)
 	if (!line)
 		return (NULL);
 	a = 0;
-	while (!s[a] && s[a] != '\n')
+	while (s[a] && s[a] != '\n')
 	{
 		line[a] = s[a];
 		a++;
