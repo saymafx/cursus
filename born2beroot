@@ -1,0 +1,4 @@
+uname -mnrspiova
+grep 'cpu cores' /proc/cpuinfo | uniq
+cat /proc/cpuinfo | grep processor | wc -l
+free | grep Mem | awk '{print $3/$2 * 100.0}'
