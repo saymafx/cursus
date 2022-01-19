@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tidigov <tidigov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/08 13:56:12 by tidigov           #+#    #+#             */
-/*   Updated: 2022/01/06 19:14:24 by tidigov          ###   ########.fr       */
+/*   Created: 2022/01/05 17:29:04 by tidigov           #+#    #+#             */
+/*   Updated: 2022/01/05 17:40:32 by tidigov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*ft_first_line(int fd, char *save_line)
 {
@@ -46,7 +46,7 @@ char	*ft_cleanline(char *s)
 		return (NULL);
 	while (s[a] != '\n' && s[a])
 		a++;
-	line = (char *)malloc(sizeof(char) * (a + 2));
+	line = (char *)malloc(sizeof(char) * (a + 1));
 	if (!line)
 		return (NULL);
 	a = 0;
@@ -93,15 +93,15 @@ char	*ft_saveline(char *s)
 
 char	*get_next_line(int fd)
 {
-	static char	*save_line;
+	static char	*save_line[OPEN_MAX];
 	char		*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (0);
-	save_line = ft_first_line(fd, save_line);
-	if (!save_line)
+	save_line[fd] = ft_first_line(fd, save_line[fd]);
+	if (!save_line[fd])
 		return (NULL);
-	line = ft_cleanline(save_line);
-	save_line = ft_saveline(save_line);
+	line = ft_cleanline(save_line[fd]);
+	save_line[fd] = ft_saveline(save_line[fd]);
 	return (line);
 }
