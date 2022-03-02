@@ -1,23 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tidigov <tidigov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/01 17:31:51 by tidigov           #+#    #+#             */
-/*   Updated: 2022/03/01 17:50:51 by tidigov          ###   ########.fr       */
+/*   Created: 2021/10/21 17:09:08 by tidigov           #+#    #+#             */
+/*   Updated: 2022/02/12 16:25:39 by tidigov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include <stdlib.h>
-# include <signal.h>
-# include <stdio.h>
-# include <unistd.h>
+#include "minitalk.h"
 
-int	ft_atoi(const char *str);
-void	ft_putstr_fd(char *s, int fd);
-int	ft_isdigit(int c);
-void	ft_putnbr_fd(int n, int fd);
-void	ft_putchar_fd(char c, int fd);
-size_t	ft_strlen(const char *s);
+int	ft_atoi(const char *str)
+{
+	int	signe;
+	int	result;
+
+	signe = 0;
+	result = 0;
+	while ((*str == ' ') || (*str >= 9 && *str <= 13))
+		str++;
+	if (*str == '+' || *str == '-')
+	{
+		if (*str == '-')
+			signe = !signe;
+		str++;
+	}
+	while (*str >= '0' && *str <= '9')
+	{
+		result = result * 10 + *str - '0';
+		str++;
+	}
+	if (signe == 1)
+		result = -result;
+	return (result);
+}

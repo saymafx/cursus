@@ -6,51 +6,67 @@
 /*   By: tidigov <tidigov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 15:14:44 by tidigov           #+#    #+#             */
-/*   Updated: 2022/02/12 16:36:44 by tidigov          ###   ########.fr       */
+/*   Updated: 2022/03/01 17:38:46 by tidigov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-void    send_to_server (pid_t pid, const unsigned char *str)
+void    send_to_server (pid_t pid, char str)
 {
-	int	a;
-	unsigned char	bit;
+	int	i;
     
-    while (*str)
+	i = 0;
+    while (i < 8)
     {
-		bit = 1 << 7;
-		while (bit)
+        if ((str >> i) & 1)
 		{
-        	bit--;
-        	if (*str & bit)
-				kill(pid, SIGUSR1);
-			else
-				kill(pid, SIGUSR2);
-			usleep(300);
-			bit >>= 1;
+			usleep(100);
+			kill(pid, SIGUSR1);
 		}
-		str++;
-    }
-	a = -1;
-	while (++a < 8)
-	{
-		kill(pid, SIGUSR2);
-		usleep(300);
+		else
+		{
+			usleep(100);
+			kill(pid, SIGUSR2);
+		}
+		usleep(50);
+		i++;
 	}
 }
-
+int	ft_error(int argc, char *argv)
+{
+	int	a;
+	
+	a = 0;
+	if (argc != 3)
+	{
+		ft_putstr_fd("Need 2 args : PID & string\n", 1);
+		return (0);
+	}
+	while (argv[a])
+	{
+		if(!ft_isdigit(argv[a]))
+		{
+			ft_putstr_fd("PID must be a number\n", 1);
+			return (0);
+		}
+		a++;
+	}
+	return (1);
+}
 int main(int argc, char **argv)
 {
     int	pid;
+	int	a;
 	
-	if (argc != 3)
-	{
-		write(2, "NULL", 4);
-		return (1);
-	}
-	
+	if (ft_error(argc, argv[1]) == 0)
+		return (0);
+	a = 0;
     pid = ft_atoi(argv[1]);
-	send_to_server(pid, (const unsigned char *)argv[2]);
-    return(0);
+	while (argv[2][a])
+	{
+		send_to_server(pid, argv[2][a]);
+		a++;
+	}
+	return(0);
 }
