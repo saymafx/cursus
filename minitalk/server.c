@@ -6,7 +6,7 @@
 /*   By: tidigov <tidigov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 15:14:49 by tidigov           #+#    #+#             */
-/*   Updated: 2022/03/02 14:53:27 by tidigov          ###   ########.fr       */
+/*   Updated: 2022/03/05 17:56:18 by tidigov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void    sig_handler(int sig)
     static int  i = 0;
     static char c = 0;
 
-    i = 0;
     if (sig == SIGUSR1)
         c |= 1 << i;
     i++;

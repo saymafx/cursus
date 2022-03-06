@@ -1,4 +1,4 @@
-NAME = $(SERVER) $(CLIENT)
+NAME = minitalk.a
 
 GCC = gcc
 
@@ -11,7 +11,6 @@ RC = -rcs
 SERVER = server
 CLIENT = client
 
-SRC = server.c client.c
 
 LIBFT = $(addprefix libft/,) \
 	   ft_strlen.c \
@@ -21,6 +20,8 @@ LIBFT = $(addprefix libft/,) \
 	   ft_putchar_fd.c \
 	   ft_putnbr_fd.c \
 
+SRC = server.c \
+	client.c \
 # ifdef FLAG
 # 	SRC_COMP = $(SRC) $(SRC_B)
 # else
@@ -29,22 +30,23 @@ LIBFT = $(addprefix libft/,) \
 
 OBJ = ${SRC:.c=.o}
 
+all: $(NAME)
+
 $(NAME): $(OBJ)
+	make -C libft/
+	mv libft/libft.a ./minitalk.a
 	$(AR) ${RC} $(NAME) $(OBJ)
 	$(CC) -o $(SERVER) server.c $(NAME)
 	$(CC) -o $(CLIENT) client.c $(NAME)
-
-all: $(NAME)
 
 %.o: %.c
 	$(GCC) $(FLAGS) -c $< -o $@
 
 clean:
-	rm -rf ${OBJ} ${OBJ_B}
+	make -C libft/ clean
+	rm -rf ${OBJ}
 
 fclean:clean
-	rm -rf ${NAME}
+	rm -rf ${NAME} ${CLIENT} ${SERVER}
 
 re: fclean all
-
-.PHONY: all clean fclean re bonus

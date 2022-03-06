@@ -6,11 +6,11 @@
 /*   By: tidigov <tidigov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/22 17:27:31 by tidigov           #+#    #+#             */
-/*   Updated: 2022/03/01 17:28:58 by tidigov          ###   ########.fr       */
+/*   Updated: 2022/03/05 17:36:30 by tidigov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "../minitalk.h"
 
 int	ft_isdigit(int c)
 {

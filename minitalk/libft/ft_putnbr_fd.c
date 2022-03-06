@@ -6,11 +6,11 @@
 /*   By: tidigov <tidigov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 16:54:02 by tidigov           #+#    #+#             */
-/*   Updated: 2022/03/01 17:47:15 by tidigov          ###   ########.fr       */
+/*   Updated: 2022/03/05 17:36:35 by tidigov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "../minitalk.h"
 
 void	ft_putnbr_fd(int n, int fd)
 {
