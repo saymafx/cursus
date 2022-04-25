@@ -6,7 +6,7 @@
 /*   By: tidigov <tidigov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 17:29:23 by tidigov           #+#    #+#             */
-/*   Updated: 2022/04/06 16:43:17 by tidigov          ###   ########.fr       */
+/*   Updated: 2022/04/16 16:24:15 by tidigov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,6 @@ void	ft_putnbr_fd(int n, int fd);
 char	*ft_strjoin(char *s1, char *s2);
 void	ft_putendl_fd(char *s, int fd);
 char	*ft_get_next_line(int fd);
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
 
 #endif

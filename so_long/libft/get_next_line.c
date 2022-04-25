@@ -6,7 +6,7 @@
 /*   By: tidigov <tidigov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 13:56:12 by tidigov           #+#    #+#             */
-/*   Updated: 2022/04/04 10:14:24 by tidigov          ###   ########.fr       */
+/*   Updated: 2022/04/16 16:37:46 by tidigov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,18 +44,13 @@ char	*ft_cleanline(char *s)
 	a = 0;
 	if (s[0] == '\0')
 		return (NULL);
-	while (s[a] != '\n' && s[a])
+	while (s[a] && s[a] != '\n')
 		a++;
-	line = (char *)malloc(sizeof(char) * (a + 2));
+	line = (char *)malloc(sizeof(char) * (a + 1));
 	if (!line)
 		return (NULL);
 	a = 0;
 	while (s[a] && s[a] != '\n')
-	{
-		line[a] = s[a];
-		a++;
-	}
-	if (s[a] == '\n')
 	{
 		line[a] = s[a];
 		a++;

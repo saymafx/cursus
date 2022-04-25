@@ -4,9 +4,9 @@ LIB_NAME = so_long.a
 
 CC = gcc
 
-FLAG = -Wall -Wextra -Werror
+FLAG = -Wall -Wextra -Werror -g
 
-SRC = jojo_game.c error.c move.c parsing.c player_down.c player_up.c player_left.c player_right.c
+SRC = jojo_game.c error.c move.c parsing.c player_down.c player_up.c player_left.c player_right.c map_aff.c
 
 AR = ar -rcs
 
@@ -21,7 +21,7 @@ $(NAME): $(OBJ)
 	make -C libft/
 	mv libft/libft.a src/$(LIB_NAME)
 	$(AR) src/$(LIB_NAME) $(OBJ)
-	$(CC) -g -lmlx -framework OpenGL -framework AppKit src/$(LIB_NAME) -o $(NAME) $?
+	$(CC) -lmlx -framework OpenGL -framework AppKit src/$(LIB_NAME) -o $(NAME) $?
 
 clean:
 	make -C libft/ clean

@@ -6,7 +6,7 @@
 /*   By: tidigov <tidigov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 11:54:26 by tidigov           #+#    #+#             */
-/*   Updated: 2022/04/06 16:32:36 by tidigov          ###   ########.fr       */
+/*   Updated: 2022/04/14 14:55:22 by tidigov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ void	move_and_collect(t_jojo *map)
 {
 	write(STDOUT_FILENO, "move :", 6);
 	ft_putnbr_fd(map->move, STDOUT_FILENO);
-	write(STDOUT_FILENO, "/n", 1);
+	write(STDOUT_FILENO, "\n", 1);
 	write(STDOUT_FILENO, "collectible :", 13);
-	ft_putnbr_fd(map->to_collect, STDOUT_FILENO);
-	write(STDOUT_FILENO, "/n", 1);
+	ft_putnbr_fd(map->nbr_collect, STDOUT_FILENO);
+	write(STDOUT_FILENO, "\n", 1);
 }
 
 int	key_assign(int key, t_jojo *map)

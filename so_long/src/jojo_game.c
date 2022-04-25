@@ -6,59 +6,51 @@
 /*   By: tidigov <tidigov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 13:55:13 by tidigov           #+#    #+#             */
-/*   Updated: 2022/04/06 16:30:04 by tidigov          ###   ########.fr       */
+/*   Updated: 2022/04/16 16:31:49 by tidigov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/jojo_game.h"
 
-void	add_tab(t_jojo *map)
+void	add_tab(t_jojo *map, char *av)
 {
 	int		fd;
 	int		i;
 	char	*tmp;
 
-	i = 0;
-	tmp = NULL;
+	i = -1;
 	map->line_max = 0;
-	map->count_line = 0;
-	fd = open("maps/map.ber", O_RDONLY);
+	map->count_line = 1;
+	fd = open(av, O_DIRECTORY);
+	if (fd != -1)
+		file_error(1);
+	else
+	{
+		fd = open(av, O_RDONLY);
+		if (fd == -1)
+			file_error(2);
+	}
 	tmp = ft_get_next_line(fd);
+	if (tmp == 0)
+		file_error(2);
 	while (ft_get_next_line(fd))
 		map->count_line++;
-	map->count_line += 1;
-	while (tmp[i])
-	{
+	while (tmp[++i])
 		map->line_max++;
-		i++;
-	}
-	printf("%d\n", map->count_line);
-	printf("%d\n", map->line_max);
 }
 
-void	add_map(t_jojo *map)
+void	add_map(t_jojo *map, char *av)
 {
 	int		fd;
 	int		i;
 	char	**tmp;
 
-	i = 0;
 	map->tab = malloc(sizeof(char *) * map->count_line + 1);
-	while (i < map->count_line)
-	{
-		map->tab[i] = malloc(sizeof(char) * map->line_max + 1);
-		i++;
-	}
+	fd = open(av, O_RDONLY);
 	i = 0;
-	fd = open("maps/map.ber", O_RDONLY);
 	while (i < map->count_line)
-	{
-		map->tab[i] = ft_get_next_line(fd);
-		i++;
-	}
-	i = -1;
-	while (map->tab[++i])
-		printf("%s", map->tab[i]);
+		map->tab[i++] = ft_get_next_line(fd);
+	map->tab[i] = NULL;
 }
 
 void	map_init(t_jojo *map)
@@ -68,21 +60,17 @@ void	map_init(t_jojo *map)
 	map->player_left = "img/josuke_left.xpm";
 	map->player_down = "img/josuke_down.xpm";
 	map->player_up = "img/josuke_up.xpm";
-	map->collectible = "img/ground.xpm";
+	map->collectible = "img/collectible.xpm";
 	map->ground = "img/ground.xpm";
-	map->exit = "img/ground.xpm";
+	map->exit = "img/exit.xpm";
 	map->wall = "img/wall.xpm";
-	map->collectible = 0;
-	map->nbr_player = 0;
-	map->nbr_exit = 0;
-	map->nbr_x = 0;
-	map->nbr_y = 0;
 	map->move = 0;
 }
 
 static void	texture_init(t_jojo *map)
 {
-	map->win = mlx_new_window(map->mlx, 700, 700, "JoJo Game");
+	map->win = mlx_new_window(map->mlx, map->line_max * 32,
+			map->count_line * 32, "JoJo Game");
 	map->is_collectible = mlx_xpm_file_to_image(map->mlx, map->collectible,
 			&map->screen_width, &map->screen_height);
 	map->is_player = mlx_xpm_file_to_image(map->mlx, map->player_down,
@@ -100,10 +88,21 @@ int	main(int ac, char **av)
 	t_jojo	map;
 
 	map.tab = NULL;
-	add_tab(&map);
-	add_map(&map);
-	map_init(&map);
-	texture_init(&map);
-	mlx_loop(map.mlx);
-	return (1);
+	if (ac == 2)
+	{
+		check_ext(av[1]);
+		add_tab(&map, av[1]);
+		add_map(&map, av[1]);
+		map_error(&map);
+		co_ex(&map);
+		position_player(&map);
+		map_init(&map);
+		texture_init(&map);
+		pars_map(&map);
+		mlx_hook(map.win, 2, 0, key_assign, &map);
+		mlx_hook(map.win, 17, 0, exit_game, &map);
+		mlx_loop(map.mlx);
+		free_tab(&map);
+	}
+	return (0);
 }

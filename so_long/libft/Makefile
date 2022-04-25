@@ -2,18 +2,19 @@ NAME = libft.a
 
 GCC = gcc
 
-FLAGS = -Wall -Wextra -Werror 
+FLAGS = -Wall -Wextra -Werror -g
 AR = ar
 
 RC = -rcs
 
-SRC = ft_putendl_fd \
+SRC = ft_putendl_fd.c \
 	ft_strlen.c \
 	ft_strchr.c \
 	ft_strjoin.c \
 	ft_putnbr_fd.c \
 	ft_putchar_fd.c \
 	get_next_line.c \
+	ft_strncmp.c \
 
 OBJ = ${SRC:.c=.o}
 
