@@ -37,6 +37,7 @@ typedef struct s_philo
 	pthread_t		phi;
 	pthread_mutex_t	*rf;
 	pthread_mutex_t	lf;
+	pthread_mutex_t	print;
 }	t_philo;
 
 int	ft_atoi(const char *str);
