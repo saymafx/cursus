@@ -26,19 +26,40 @@ void *routine(void *av)
 		pthread_mutex_lock(&ph->lf);
 		if (ph->nbr_philo == 1)
 		{
-			printf("%s\n", "only 1 philo");
+			//
 			exit(EXIT_SUCCESS);
 		}
 		pthread_mutex_lock(ph->rf);
+		//
 		ph->last_eat = time_set();
-		
+		//
 		pthread_mutex_unlock(ph->rf);
 		pthread_mutex_unlock(&ph->lf);
+		//
 	}
 	return (NULL);
 }
 
-//void	philo_die
+void	philo_die(void *av)
+{
+	t_philo	*ph;
+	
+	ph = av
+	while (1)
+	{
+		if (ph->must_eat == 0)
+			return (NULL);
+		if (time_set() - ph->last_eat > ph-> time_to_die)
+		{
+			pthread_mutex_lock(&ph->print);
+			//
+			time_set() - ph->start, ph->p);
+			pthread_mutex_unlock(&ph->print);
+			exit(0);
+		}
+	}
+	return (NULL);
+}
 
 void    philo_create(t_philo *ph)
 {
